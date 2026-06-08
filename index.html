@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daily Activity Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="summary-band">
+        <div>
+          <p class="eyebrow" id="todayLabel">Today</p>
+          <h1>Daily Activity Tracker</h1>
+        </div>
+        <div class="score-row" aria-label="Daily summary">
+          <div>
+            <span id="totalCount">0</span>
+            <small>Activities</small>
+          </div>
+          <div>
+            <span id="doneCount">0</span>
+            <small>Done</small>
+          </div>
+          <div>
+            <span id="totalMinutes">0</span>
+            <small>Minutes</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <form class="entry-panel" id="activityForm">
+          <label>
+            Activity
+            <input id="activityName" name="activityName" type="text" placeholder="Exercise, study, reading..." required />
+          </label>
+          <div class="form-grid">
+            <label>
+              Time
+              <input id="activityTime" name="activityTime" type="time" />
+            </label>
+            <label>
+              Minutes
+              <input id="activityMinutes" name="activityMinutes" type="number" min="1" max="1440" value="30" />
+            </label>
+          </div>
+          <label>
+            Category
+            <select id="activityCategory" name="activityCategory">
+              <option value="Health">Health</option>
+              <option value="Work">Work</option>
+              <option value="Study">Study</option>
+              <option value="Home">Home</option>
+              <option value="Personal">Personal</option>
+            </select>
+          </label>
+          <label>
+            Notes
+            <textarea id="activityNotes" name="activityNotes" rows="3" placeholder="Small details, mood, result..."></textarea>
+          </label>
+          <button class="primary-button" type="submit">Add Activity</button>
+        </form>
+
+        <section class="tracker-panel" aria-label="Activities">
+          <div class="toolbar">
+            <div class="date-control">
+              <button type="button" class="icon-button" id="previousDay" aria-label="Previous day">&lt;</button>
+              <input id="selectedDate" type="date" />
+              <button type="button" class="icon-button" id="nextDay" aria-label="Next day">&gt;</button>
+            </div>
+            <div class="filter-control" role="tablist" aria-label="Activity filter">
+              <button type="button" class="filter active" data-filter="all">All</button>
+              <button type="button" class="filter" data-filter="open">Open</button>
+              <button type="button" class="filter" data-filter="done">Done</button>
+            </div>
+          </div>
+
+          <div class="progress-track" aria-label="Completion progress">
+            <span id="progressBar"></span>
+          </div>
+
+          <ul class="activity-list" id="activityList"></ul>
+          <div class="empty-state" id="emptyState">
+            <div class="empty-visual" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <h2>No activities yet</h2>
+            <p>Add what you want to track today. Keep it simple: one useful line is enough.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="activityTemplate">
+      <li class="activity-item">
+        <button type="button" class="check-button" aria-label="Mark complete"></button>
+        <div class="activity-copy">
+          <div class="activity-topline">
+            <strong></strong>
+            <span class="category-pill"></span>
+          </div>
+          <div class="activity-meta"></div>
+          <p></p>
+        </div>
+        <button type="button" class="delete-button" aria-label="Delete activity">x</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
